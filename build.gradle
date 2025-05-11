@@ -42,6 +42,7 @@ compileQuerydsl{
 
 repositories {
 	mavenCentral()
+	maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -64,6 +65,9 @@ dependencies {
 	implementation "org.antlr:antlr4-runtime:4.10"
 	implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'
 	implementation 'org.springdoc:springdoc-openapi-data-rest:1.6.9'
+
+	implementation 'org.springframework.boot:spring-boot-starter-logging'
+	implementation 'com.github.napstr:logback-discord-appender:1.0.0'
 
 }
 
