@@ -16,9 +16,9 @@ public class ReviewRestController {
 
     @PostMapping("/{storeId}")
     @Operation(summary = "가게 리뷰 작성 API")
-    public void addReview(@PathVariable Long storeId,
+    public void addReview(@PathVariable("storeId") Long storeId,
                           @RequestBody @Valid ReviewRequestDTO dto,
-                          @RequestParam Long memberId) {
+                          @RequestParam("memberId") Long memberId) {
         reviewService.addReview(storeId, dto, memberId);
     }
 
