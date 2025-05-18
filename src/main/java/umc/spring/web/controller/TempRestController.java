@@ -28,4 +28,10 @@ public class TempRestController {
         tempQueryService.CheckFlag(flag);
         return ApiResponse.onSuccess(TempConverter.toTempExceptionDTO(flag));
     }
+
+    @GetMapping("/error")
+    public ApiResponse<String> errorAPI() {
+        int result = 10 / 0; // 여기서 ArithmeticException 발생
+        return ApiResponse.onSuccess("This will not be returned");
+    }
 }
