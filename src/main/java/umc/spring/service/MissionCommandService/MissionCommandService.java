@@ -4,6 +4,6 @@ import umc.spring.domain.Mission;
 import umc.spring.dto.MissionRequestDTO;
 
 public interface MissionCommandService {
-    Mission addMissionToStore(Long storeId, MissionRequestDTO dto);
+    Long addMissionToStore(Long storeId, MissionRequestDTO dto);
     Mission challengeMission(Long missionId, Long memberId);
 }

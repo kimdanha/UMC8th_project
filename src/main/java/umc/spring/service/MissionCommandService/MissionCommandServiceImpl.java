@@ -29,7 +29,7 @@ public class MissionCommandServiceImpl implements MissionCommandService{
     private final MemberRepository memberRepository;
     private final MemberMissionRepository memberMissionRepository;
 
-    public Mission addMissionToStore(Long storeId, MissionRequestDTO dto) {
+    public Long addMissionToStore(Long storeId, MissionRequestDTO dto) {
         Store store = storeRepository.findById(storeId)
                 .orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
 
@@ -39,9 +39,9 @@ public class MissionCommandServiceImpl implements MissionCommandService{
                 .store(store)
                 .build();
 
-        missionRepository.save(mission);
-        return mission;
+        return missionRepository.save(mission).getId();
     }
+
     public Mission challengeMission(Long missionId, Long memberId) {
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
