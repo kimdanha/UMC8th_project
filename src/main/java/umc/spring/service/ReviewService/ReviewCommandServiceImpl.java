@@ -6,6 +6,7 @@ import umc.spring.apiPayload.code.status.ErrorStatus;
 import umc.spring.apiPayload.exception.handler.StoreHandler;
 import umc.spring.converter.ReviewConverter;
 import umc.spring.domain.Member;
+import umc.spring.domain.Review;
 import umc.spring.domain.Store;
 import umc.spring.dto.ReviewRequestDTO;
 import umc.spring.repository.MemberRepository.MemberRepository;
@@ -21,12 +22,12 @@ public class ReviewCommandServiceImpl implements ReviewCommandService {
     private final MemberRepository memberRepository;
 
     @Override
-    public void addReview(Long storeId, ReviewRequestDTO dto, Long memberId) {
+    public Review addReview(Long storeId, ReviewRequestDTO dto, Long memberId) {
         Store store = storeRepository.findById(storeId)
                 .orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new StoreHandler(ErrorStatus.MEMBER_NOT_FOUND));
 
-        reviewRepository.save(ReviewConverter.toEntity(dto, member, store));
+        return reviewRepository.save(ReviewConverter.toEntity(dto, member, store));
     }
 }
