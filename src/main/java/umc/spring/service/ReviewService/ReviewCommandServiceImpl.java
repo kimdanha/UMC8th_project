@@ -22,12 +22,12 @@ public class ReviewCommandServiceImpl implements ReviewCommandService {
     private final MemberRepository memberRepository;
 
     @Override
-    public Review addReview(Long storeId, ReviewRequestDTO dto, Long memberId) {
+    public Long addReview(Long storeId, ReviewRequestDTO dto, Long memberId) {
         Store store = storeRepository.findById(storeId)
                 .orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new StoreHandler(ErrorStatus.MEMBER_NOT_FOUND));
 
-        return reviewRepository.save(ReviewConverter.toEntity(dto, member, store));
+        return reviewRepository.save(ReviewConverter.toEntity(dto, member, store)).getId();
     }
 }
